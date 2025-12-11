@@ -27,6 +27,9 @@ for file in os.listdir(generated_directory):
     experiment_atoms = [atom.get_coord() for atom in experiment_structure.get_atoms()]
     generated_atoms = [atom.get_coord() for atom in generated_structure.get_atoms()]
 
+    if len(experiment_atoms) != len(generated_atoms):
+        rmse = "Atom mismatch"
+
     experiment_values = np.array(experiment_atoms)
     generated_values = np.array(generated_atoms)
 
