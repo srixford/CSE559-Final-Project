@@ -29,11 +29,12 @@ for file in os.listdir(generated_directory):
 
     if len(experiment_atoms) != len(generated_atoms):
         rmse = "Atom mismatch"
+    else:
+        experiment_values = np.array(experiment_atoms)
+        generated_values = np.array(generated_atoms)
 
-    experiment_values = np.array(experiment_atoms)
-    generated_values = np.array(generated_atoms)
+        rmse = np.sqrt(np.mean(((generated_values - experiment_values) ** 2).sum(axis=1)))
 
-    rmse = np.sqrt(np.mean(((generated_values - experiment_values) ** 2).sum(axis=1)))
 
     results.append({
         "id": file_id,
